@@ -1,3 +1,4 @@
+import process from 'node:process';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -19,7 +20,7 @@ const ENGAPUZHA_STORES = [
     pincode: '673586',
     phone: '9847110002',
     address: 'Kaithapoyil Junction, Engapuzha',
-    isOpen: true,
+    isOpen: false,
   },
   {
     id: 'engapuzha-store-3',
@@ -28,7 +29,7 @@ const ENGAPUZHA_STORES = [
     pincode: '673586',
     phone: '9847110003',
     address: 'Town Masjid Road, Engapuzha',
-    isOpen: true,
+    isOpen: false,
   },
   {
     id: 'engapuzha-store-4',
