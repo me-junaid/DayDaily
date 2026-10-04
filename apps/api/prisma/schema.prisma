@@ -1,0 +1,97 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  STORE_OWNER
+  STORE_STAFF
+  ADMIN
+}
+
+enum OrderStatus {
+  PLACED
+  ACCEPTED
+  PACKED
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+  REJECTED
+}
+
+enum PaymentMethod {
+  COD
+  UPI
+  ONLINE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  phone     String   @unique
+  name      String?
+  role      Role     @default(CUSTOMER)
+  storeId   String?
+  store     Store?   @relation(fields: [storeId], references: [id])
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Store {
+  id        String    @id @default(cuid())
+  name      String
+  phone     String
+  address   String
+  town      String
+  pincode   String
+  isOpen    Boolean   @default(true)
+  users     User[]
+  orders    Order[]
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  name            String
+  category        String
+  unit            String
+  unitQuantity    Float
+  pricePaise      Int
+  aliases         String[]
+  inStock         Boolean  @default(true)
+  storeId         String
+  store           Store    @relation(fields: [storeId], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  storeId         String
+  store           Store         @relation(fields: [storeId], references: [id])
+  status          OrderStatus   @default(PLACED)
+  totalPaise      Int
+  paymentMethod   PaymentMethod @default(COD)
+  paymentStatus   PaymentStatus @default(PENDING)
+  deliveryAddress String
+  items           Json
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}

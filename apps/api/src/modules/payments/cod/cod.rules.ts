@@ -1,0 +1,1 @@
+export const COD_MAX_AMOUNT_PAISE = 500000;
