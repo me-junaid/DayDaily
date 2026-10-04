@@ -1,1 +1,1 @@
-import React from 'react'; export default function CatalogPage() { return <div>Catalog & Aliases</div>; }
+export default function CatalogPage() { return <div>Catalog & Aliases</div>; }

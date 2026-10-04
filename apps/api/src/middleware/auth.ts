@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-export function requireAuth(req: Request, res: Response, next: NextFunction) {
+export function requireAuth(_req: Request, _res: Response, next: NextFunction) {
   next();
 }

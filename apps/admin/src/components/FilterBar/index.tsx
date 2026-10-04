@@ -1,1 +1,1 @@
-import React from 'react'; export function FilterBar() { return <div>Filter</div>; }
+export function FilterBar() { return <div>Filter</div>; }

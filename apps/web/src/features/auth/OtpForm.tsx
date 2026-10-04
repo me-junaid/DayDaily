@@ -1,1 +1,1 @@
-import React from 'react'; export function OtpForm() { return null; }
+export function OtpForm() { return null; }

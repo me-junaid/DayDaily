@@ -1,1 +1,1 @@
-import React from 'react'; export function ConfirmDialog() { return null; }
+export function ConfirmDialog() { return null; }

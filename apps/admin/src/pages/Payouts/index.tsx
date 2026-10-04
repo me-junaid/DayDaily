@@ -1,1 +1,1 @@
-import React from 'react'; export default function PayoutsPage() { return <div>Payouts</div>; }
+export default function PayoutsPage() { return <div>Payouts</div>; }

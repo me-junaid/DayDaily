@@ -1,1 +1,1 @@
-import React from 'react'; export default function OrdersPage() { return <div>Orders</div>; }
+export default function OrdersPage() { return <div>Orders</div>; }

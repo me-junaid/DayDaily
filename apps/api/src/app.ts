@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { errorHandler } from './middleware/errorHandler';
@@ -9,8 +9,9 @@ import { ordersRouter } from './modules/orders/orders.routes';
 import { voiceRouter } from './modules/voice/voice.routes';
 import { paymentsRouter } from './modules/payments/payments.routes';
 import { whatsappRouter } from './modules/whatsapp/whatsapp.routes';
+import { storesRouter } from './modules/stores/stores.routes';
 
-export function createApp() {
+export function createApp(): Express {
   const app = express();
 
   app.use(helmet());
@@ -19,12 +20,13 @@ export function createApp() {
   app.use(requestId);
 
   // Health check
-  app.get('/health', (req, res) => {
+  app.get('/health', (_req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
   // Module routes
   app.use('/api/auth', authRouter);
+  app.use('/api/stores', storesRouter);
   app.use('/api/catalog', catalogRouter);
   app.use('/api/orders', ordersRouter);
   app.use('/api/voice', voiceRouter);

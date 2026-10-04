@@ -1,1 +1,1 @@
-import React from 'react'; export function ClarifySheet() { return null; }
+export function ClarifySheet() { return null; }

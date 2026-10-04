@@ -1,1 +1,1 @@
-import React from 'react'; export function DataTable() { return <table></table>; }
+export function DataTable() { return <table></table>; }
